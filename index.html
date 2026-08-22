@@ -165,7 +165,7 @@
   .reveal.in { opacity: 1; transform: translateY(0); }
   .reveal-slow { transition-duration: 1s; }
   .cta-btn { cursor:pointer; border:none; }
-  .cta-btn:focus-visible, .nav-link:focus-visible, .waitlist-input:focus-visible, a:focus-visible { outline: 2px solid var(--outline); outline-offset: 2px; }
+  .cta-btn:focus-visible, .nav-link:focus-visible, a:focus-visible { outline: 2px solid var(--outline); outline-offset: 2px; }
   .btn-primary { background:linear-gradient(120deg,var(--brand-a),var(--brand-b) 55%,var(--brand-c)); color:#fff; box-shadow:var(--btn-shadow); }
   .btn-primary:hover { box-shadow:var(--btn-shadow-hover); }
   .glass { background:var(--glass-bg); border:1px solid var(--glass-border); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-radius:20px; box-shadow:var(--glass-shadow); }
@@ -203,9 +203,9 @@
       <div class="nav-links-desktop" style="display:flex; align-items:center; gap:clamp(16px,3vw,32px); font-size:14px; color:var(--pill-text);">
         <a class="nav-link" href="#how" style="color:var(--pill-text);">How it works</a>
         <a class="nav-link" href="#pricing" style="color:var(--pill-text);">Pricing</a>
-        <button class="cta-btn btn-primary js-scroll-form" style="padding:9px 20px; border-radius:980px; font-size:13px; font-weight:600;">Join waitlist</button>
+        <a class="cta-btn btn-primary" href="#pricing" style="padding:9px 20px; border-radius:980px; font-size:13px; font-weight:600; display:inline-block;">Get started</a>
       </div>
-      <button class="cta-btn btn-primary js-scroll-form" style="display:none; padding:8px 16px; border-radius:980px; font-size:13px; font-weight:600;" id="navMobileBtn">Join</button>
+      <a class="cta-btn btn-primary" href="#pricing" style="display:none; padding:8px 16px; border-radius:980px; font-size:13px; font-weight:600;" id="navMobileBtn">Pricing</a>
     </div>
   </div>
 
@@ -217,7 +217,7 @@
         <h1 style="font-size:clamp(42px,6vw,84px); line-height:1.04; letter-spacing:-0.03em; font-weight:700; margin:0 0 26px; text-wrap:balance; animation:fadeUp 0.9s ease both;">Every DM<br/>becomes <span class="grad-text">an order.</span></h1>
         <p class="fade" style="font-size:clamp(18px,1.7vw,21px); line-height:1.55; color:var(--muted); max-width:500px; margin:0 0 40px; animation:fadeUp 0.9s ease 0.15s both;">Shoply answers buyers, takes the order, and collects payment — in your shop's own voice, before you lift a finger.</p>
         <div style="display:flex; gap:14px; flex-wrap:wrap; animation:fadeUp 0.9s ease 0.3s both;">
-          <button class="cta-btn btn-primary js-scroll-form" style="padding:15px 30px; border-radius:980px; font-size:16px; font-weight:600;">Join the waitlist</button>
+          <a class="cta-btn btn-primary" href="#pricing" style="padding:15px 30px; border-radius:980px; font-size:16px; font-weight:600; display:inline-block;">See pricing</a>
           <a href="#how" class="glass" style="padding:15px 30px; border-radius:980px; font-size:16px; font-weight:500; color:var(--text); display:inline-block;">See how it works</a>
         </div>
       </div>
@@ -476,37 +476,49 @@
   </div>
 
   <!-- PRICING -->
-  <div id="pricing" style="padding:140px clamp(20px,6vw,80px); display:flex; justify-content:center; position:relative; z-index:1;">
-    <div id="r-pricing" class="reveal reveal-slow glass-strong" style="max-width:480px; width:100%; padding:56px 44px; text-align:center; box-shadow:0 50px 100px -30px var(--shadow-purple-strong);">
+  <div id="pricing" style="padding:140px clamp(20px,6vw,80px); position:relative; z-index:1;">
+    <div style="max-width:720px; margin:0 auto 56px; text-align:center;">
       <div style="font-size:13px; letter-spacing:0.06em; color:var(--link); font-weight:600; margin-bottom:18px; text-transform:uppercase;">Pricing</div>
-      <h3 style="font-size:clamp(28px,3.2vw,38px); letter-spacing:-0.02em; font-weight:700; margin:0 0 18px;">Pay only when you sell.</h3>
-      <p style="font-size:16px; line-height:1.6; color:var(--muted); margin:0 0 32px;">A small percentage of each completed order. No subscription. No setup fee. Exact rate confirmed when you join.</p>
-      <div style="display:flex; flex-direction:column; gap:12px; text-align:left; margin-bottom:36px; max-width:340px; margin-left:auto; margin-right:auto;">
-        <div style="font-size:15px; color:var(--text);">— Nothing to pay upfront</div>
-        <div style="font-size:15px; color:var(--text);">— Nothing if you don't sell</div>
-        <div style="font-size:15px; color:var(--text);">— Cancel any time</div>
+      <h2 style="font-size:clamp(30px,4vw,50px); letter-spacing:-0.02em; font-weight:700; margin:0 0 18px; text-wrap:balance;">One flat fee for your order volume.</h2>
+      <p style="font-size:17px; line-height:1.6; color:var(--muted); margin:0;">Pick the plan that matches how many orders you close a month. No commission cut, no surprise fees — upgrade or downgrade any time.</p>
+    </div>
+    <div id="r-pricing" class="reveal reveal-slow" style="max-width:1180px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px;">
+      <div class="glass" style="padding:34px 26px; display:flex; flex-direction:column; gap:6px;">
+        <div style="font-size:14px; font-weight:700; letter-spacing:-0.01em; margin-bottom:6px;">Starter</div>
+        <div style="font-size:32px; font-weight:700; letter-spacing:-0.02em;">GH₵250<span style="font-size:14px; font-weight:500; color:var(--muted);">/mo</span></div>
+        <div style="font-size:13.5px; color:var(--muted); margin-bottom:14px;">~10 orders/week</div>
+        <div style="font-size:14.5px; color:var(--text); font-weight:600; margin-bottom:6px;">Up to 40 orders/month</div>
+        <div style="font-size:14px; line-height:1.5; color:var(--muted);">Smaller sellers, or trialling.</div>
       </div>
-      <button class="cta-btn btn-primary js-scroll-form" style="padding:16px 30px; border-radius:980px; font-size:16px; font-weight:600;">Join the waitlist</button>
+      <div class="glass-strong" style="padding:34px 26px; display:flex; flex-direction:column; gap:6px; position:relative; box-shadow:0 50px 100px -30px var(--shadow-purple-strong); border:1.5px solid var(--outline);">
+        <div style="position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:linear-gradient(120deg,var(--brand-a),var(--brand-b) 55%,var(--brand-c)); color:#fff; font-size:11.5px; font-weight:700; letter-spacing:0.03em; text-transform:uppercase; padding:5px 14px; border-radius:980px; white-space:nowrap;">Most popular</div>
+        <div style="font-size:14px; font-weight:700; letter-spacing:-0.01em; margin-bottom:6px; margin-top:8px;">Growth</div>
+        <div style="font-size:32px; font-weight:700; letter-spacing:-0.02em;">GH₵600<span style="font-size:14px; font-weight:500; color:var(--muted);">/mo</span></div>
+        <div style="font-size:13.5px; color:var(--muted); margin-bottom:14px;">~30 orders/week</div>
+        <div style="font-size:14.5px; color:var(--text); font-weight:600; margin-bottom:6px;">Up to 120 orders/month</div>
+        <div style="font-size:14px; line-height:1.5; color:var(--muted);">Our expected modal tier.</div>
+      </div>
+      <div class="glass" style="padding:34px 26px; display:flex; flex-direction:column; gap:6px;">
+        <div style="font-size:14px; font-weight:700; letter-spacing:-0.01em; margin-bottom:6px;">Pro</div>
+        <div style="font-size:32px; font-weight:700; letter-spacing:-0.02em;">GH₵1,200<span style="font-size:14px; font-weight:500; color:var(--muted);">/mo</span></div>
+        <div style="font-size:13.5px; color:var(--muted); margin-bottom:14px;">~70 orders/week</div>
+        <div style="font-size:14.5px; color:var(--text); font-weight:600; margin-bottom:6px;">Up to 300 orders/month</div>
+        <div style="font-size:14px; line-height:1.5; color:var(--muted);">High-volume sellers.</div>
+      </div>
+      <div class="glass" style="padding:34px 26px; display:flex; flex-direction:column; gap:6px;">
+        <div style="font-size:14px; font-weight:700; letter-spacing:-0.01em; margin-bottom:6px;">Scale</div>
+        <div style="font-size:32px; font-weight:700; letter-spacing:-0.02em;">GH₵2,000<span style="font-size:14px; font-weight:500; color:var(--muted);">/mo</span></div>
+        <div style="font-size:13.5px; color:var(--muted); margin-bottom:14px;">&nbsp;</div>
+        <div style="font-size:14.5px; color:var(--text); font-weight:600; margin-bottom:6px;">Up to 600 orders/month</div>
+        <div style="font-size:14px; line-height:1.5; color:var(--muted);">Multi-staff operations.</div>
+      </div>
     </div>
   </div>
 
   <!-- FINAL CTA -->
   <div id="r-cta" class="reveal reveal-slow" style="padding:150px clamp(20px,6vw,80px); text-align:center; position:relative; z-index:1;">
-    <h2 style="font-size:clamp(34px,5vw,64px); letter-spacing:-0.02em; font-weight:700; margin:0 0 56px; max-width:760px; margin-left:auto; margin-right:auto; text-wrap:balance;">Let your shop <span class="grad-text">answer itself.</span></h2>
-
-    <div id="ctaSuccess" style="display:none; max-width:480px; margin:0 auto;" class="glass-strong">
-      <div style="padding:44px 32px;">
-        <div style="font-size:19px; font-weight:600; margin-bottom:8px;">You're on the list.</div>
-        <div style="font-size:15px; color:var(--muted);">We'll reach out on WhatsApp when it's your turn.</div>
-      </div>
-    </div>
-
-    <form id="waitlistForm" style="max-width:480px; margin:0 auto; display:flex; flex-direction:column; gap:14px;">
-      <input class="waitlist-input" type="text" required name="name" placeholder="Your name" style="width:100%; padding:16px 20px; border-radius:14px; border:1px solid var(--input-border); background:var(--input-bg); color:var(--text); font-size:16px;">
-      <input class="waitlist-input" type="text" required name="handle" placeholder="Instagram or shop handle" style="width:100%; padding:16px 20px; border-radius:14px; border:1px solid var(--input-border); background:var(--input-bg); color:var(--text); font-size:16px;">
-      <input class="waitlist-input" type="tel" required name="whatsapp" placeholder="WhatsApp number" style="width:100%; padding:16px 20px; border-radius:14px; border:1px solid var(--input-border); background:var(--input-bg); color:var(--text); font-size:16px;">
-      <button type="submit" class="cta-btn btn-primary" style="margin-top:8px; padding:16px; border-radius:980px; font-size:16px; font-weight:600;">Join the waitlist</button>
-    </form>
+    <h2 style="font-size:clamp(34px,5vw,64px); letter-spacing:-0.02em; font-weight:700; margin:0 0 40px; max-width:760px; margin-left:auto; margin-right:auto; text-wrap:balance;">Let your shop <span class="grad-text">answer itself.</span></h2>
+    <a class="cta-btn btn-primary" href="#pricing" style="padding:16px 32px; border-radius:980px; font-size:16px; font-weight:600; display:inline-block;">See pricing &amp; get started</a>
   </div>
 
   <!-- FOOTER -->
@@ -555,20 +567,6 @@
       });
     }, isStep(el) ? { threshold: 0.5, rootMargin: '-30% 0px -30% 0px' } : { threshold: 0.15 });
     obs.observe(el);
-  });
-
-  var form = document.getElementById('waitlistForm');
-  document.querySelectorAll('.js-scroll-form').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var rect = form.getBoundingClientRect();
-      window.scrollTo({ top: rect.top + window.scrollY - 120, behavior: 'smooth' });
-    });
-  });
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    form.style.display = 'none';
-    document.getElementById('ctaSuccess').style.display = 'block';
   });
 
   (function () {
