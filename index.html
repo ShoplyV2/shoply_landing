@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>shoply — Every DM becomes an order.</title>
-<meta name="description" content="shoply turns your WhatsApp DMs into paid orders. Buyers chat, pick a size, get a Paystack link, and pay — no storefront, no spreadsheet, no missed sales.">
+<title>shoply: Every DM answered.</title>
+<meta name="description" content="shoply replies to every DM for your shop on WhatsApp and Telegram, so no buyer is left waiting and you can stop checking your chats. When they're ready, it takes the order and sends a payment link.">
 <meta name="color-scheme" content="light">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%232F54A8'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
-<meta property="og:title" content="shoply — Every DM becomes an order.">
-<meta property="og:description" content="Turn your WhatsApp DMs into paid orders. Buyers chat, pick a size, get a Paystack link, and pay — no storefront, no spreadsheet, no missed sales.">
+<meta property="og:title" content="shoply: Every DM answered.">
+<meta property="og:description" content="shoply replies to every DM for your shop on WhatsApp and Telegram, so no buyer is left waiting and you can stop checking your chats. When they're ready, it takes the order and sends a payment link.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shoply — Every DM becomes an order.">
-<meta name="twitter:description" content="Turn your WhatsApp DMs into paid orders. Buyers chat, pick a size, get a Paystack link, and pay — no storefront, no spreadsheet, no missed sales.">
+<meta name="twitter:title" content="shoply: Every DM answered.">
+<meta name="twitter:description" content="shoply replies to every DM for your shop on WhatsApp and Telegram, so no buyer is left waiting and you can stop checking your chats. When they're ready, it takes the order and sends a payment link.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Outfit:wght@700&display=swap" rel="stylesheet">
@@ -53,7 +53,6 @@
     --hero-muted: rgba(255,255,255,0.86);
     --hero-em: #FFFFFF;
     --verb-on: #FFFFFF;
-    --verb-off: rgba(255,255,255,0.72);
     --hero-btn-bg: #FFFFFF;
     --hero-btn-fg: #18181B;
     --hero-btn2-border: rgba(255,255,255,0.45);
@@ -97,7 +96,6 @@
     --hero-muted: #A1A1AA;
     --hero-em: #A1B2D8;
     --verb-on: #FAFAFA;
-    --verb-off: #8A8A93;
     --hero-btn-bg: #FAFAFA;
     --hero-btn-fg: #18181B;
     --hero-btn2-border: rgba(255,255,255,0.22);
@@ -142,7 +140,6 @@
       --hero-muted: #A1A1AA;
       --hero-em: #A1B2D8;
       --verb-on: #FAFAFA;
-      --verb-off: #8A8A93;
       --hero-btn-bg: #FAFAFA;
       --hero-btn-fg: #18181B;
       --hero-btn2-border: rgba(255,255,255,0.22);
@@ -213,9 +210,9 @@
   .hero-copy { flex: 1 1 460px; min-width: 0; align-self: center; padding-bottom: 56px; }
   .hero h1 { font-size: clamp(46px, 7vw, 84px); line-height: 0.98; font-weight: 600; letter-spacing: -0.05em; }
   .hero h1 em { font-style: normal; color: var(--hero-em); }
-  .verbs { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: clamp(19px, 2vw, 24px); letter-spacing: -0.02em; }
-  .verb { color: var(--verb-off); font-weight: 500; transition: color 0.5s ease; }
-  .verb.on { color: var(--verb-on); font-weight: 600; }
+  .moments { margin-top: 20px; display: grid; font-size: clamp(22px, 2.6vw, 30px); font-weight: 600; letter-spacing: -0.025em; }
+  .moment { grid-area: 1 / 1; opacity: 0; transform: translateY(10px); color: var(--verb-on); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.2, 0, 0, 1); }
+  .moment.on { opacity: 1; transform: none; }
   .hero-sub { margin-top: 22px; max-width: 520px; font-size: 19px; line-height: 1.5; color: var(--hero-muted); }
   .hero-actions { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
   .hero .btn--primary { background: var(--hero-btn-bg); color: var(--hero-btn-fg); }
@@ -257,7 +254,6 @@
   .sum .total { padding-top: 6px; border-top: 1px solid var(--line); font-weight: 600; }
   .sum .total span:first-child { color: inherit; }
   .num { font-variant-numeric: tabular-nums; }
-  .map { display: block; width: 100%; height: 150px; background: var(--map); }
   .row { display: flex; align-items: center; gap: 10px; padding: 12px 14px; }
   .chip { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; color: var(--tint-fg); background: var(--tint); white-space: nowrap; }
   .chip--line { padding: 4px 10px; font-weight: 500; color: inherit; background: transparent; border: 1px solid var(--line); }
@@ -266,12 +262,9 @@
   .pay-btn { align-self: flex-start; display: inline-flex; align-items: center; height: 40px; padding: 0 18px; border-radius: 10px; background: var(--accent); color: #FFFFFF; font-size: 14px; font-weight: 600; }
   .note { display: flex; align-items: center; gap: 12px; padding: 12px 16px; }
   .note-icon { flex: none; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--tint); color: var(--tint-fg); }
+  .note > div { flex: 1; min-width: 0; }
   .note b { display: block; font-size: 14px; font-weight: 600; }
   .note small { display: block; margin-top: 1px; font-size: 12px; color: var(--faint); }
-  .qrow { flex: none; width: 40px; height: 40px; border-radius: 10px; background: var(--photo); }
-  .qrow-text { flex: 1; min-width: 0; }
-  .qrow-text b { display: block; font-size: 14px; font-weight: 600; }
-  .qrow-text small { display: block; margin-top: 2px; font-size: 13px; color: var(--faint); }
 
   .trust { display: flex; flex-wrap: wrap; gap: 40px; padding: clamp(32px, 5vw, 56px) clamp(24px, 4vw, 48px); background: var(--panel); border: 1px solid var(--panel-border); border-radius: 24px; }
   .trust h2 { flex: 1 1 280px; font-size: clamp(32px, 4vw, 44px); line-height: 1.08; font-weight: 600; letter-spacing: -0.04em; }
@@ -320,7 +313,7 @@
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .rise { animation: none !important; }
-    .evt, .verb { transition: none !important; }
+    .evt, .moment { transition: none !important; }
   }
 </style>
 </head>
@@ -353,20 +346,20 @@
         <div class="phone-frame"></div>
         <div class="phone-notch"></div>
         <div class="phone-stage" id="stage">
-          <div class="evt"><div class="evt-card"><span class="evt-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 3V6a1 1 0 0 1 1-1z"/></svg></span><div><p class="evt-title">Question answered</p><p class="evt-sub">Is this still available?</p></div></div></div>
+          <div class="evt"><div class="evt-card"><span class="evt-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 3V6a1 1 0 0 1 1-1z"/></svg></span><div><p class="evt-title">Question answered</p><p class="evt-sub">Replied in 4 seconds · 2:14am</p></div></div></div>
           <div class="evt"><div class="evt-card"><span class="evt-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12V5h7l9 9-7 7-9-9z"/></svg></span><div><p class="evt-title">Size and price agreed</p><p class="evt-sub">Medium · GH₵420</p></div></div></div>
           <div class="evt"><div class="evt-card"><span class="evt-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/></svg></span><div><p class="evt-title">Location received</p><p class="evt-sub">Tema, Greater Accra</p></div></div></div>
           <div class="evt"><div class="evt-card"><span class="evt-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><div><p class="evt-title">Payment link sent</p><p class="evt-sub">Card or mobile money</p></div></div></div>
-          <div class="evt"><div class="evt-card"><span class="evt-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><p class="evt-title">Order paid</p><p class="evt-sub">GH₵450.00 · Ama K., Tema</p></div></div></div>
+          <div class="evt"><div class="evt-card"><span class="evt-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><p class="evt-title">Order paid</p><p class="evt-sub">GH₵420.00 · Ama K., Tema</p></div></div></div>
         </div>
       </div>
 
       <div class="hero-copy">
-        <h1 class="rise">Every DM becomes an <em>order.</em></h1>
-        <p class="verbs rise d1" id="verbs">
-          <span class="verb">Answers.</span><span class="verb">Agrees.</span><span class="verb">Collects.</span><span class="verb">Charges.</span><span class="verb on">Notifies.</span>
+        <h1 class="rise">Every DM <em>answered.</em></h1>
+        <p class="moments rise d1" id="moments">
+          <span class="moment on">At 2am.</span><span class="moment">During lunch.</span><span class="moment">While you're with a customer.</span><span class="moment">While you sleep.</span>
         </p>
-        <p class="hero-sub rise d2">shoply answers buyers, takes the order, and collects payment, in your shop's own voice, before you lift a finger.</p>
+        <p class="hero-sub rise d2">Pick the chat app your buyers use, and shoply replies to every DM in your shop's own voice, day and night. You stop checking your chats. When they're ready to buy, it takes the order and sends the payment link too.</p>
         <div class="hero-actions rise d3">
           <a class="btn btn--primary" href="#" data-app-link="/signup">Sign up</a>
           <a class="btn btn--ghost" href="#how">See how it works</a>
@@ -386,7 +379,7 @@
           <li>"How much for two?"</li>
           <li>"Can I pay on delivery?"</li>
         </ul>
-        <p class="lead">Every one takes minutes to answer. Some never get answered at all, and the sale goes with it.</p>
+        <p class="lead">Reply late and they've already messaged the next shop.</p>
       </div>
     </div>
   </section>
@@ -395,12 +388,12 @@
   <section class="section" id="how">
     <div class="wrap pad">
       <p class="label">HOW IT WORKS</p>
-      <h2 class="h2" style="margin-top:14px;max-width:760px">From first message to paid order. You never type.</h2>
+      <h2 class="h2" style="margin-top:14px;max-width:760px">A buyer messages. You carry on with your day.</h2>
       <ol class="steps">
 
         <li class="step">
           <span class="step-num mono" aria-hidden="true">01</span>
-          <div class="step-copy"><h3>A buyer sends a photo and asks.</h3><p>Your assistant replies instantly, in your shop's own name, tone and number.</p></div>
+          <div class="step-copy"><h3>A buyer sends a photo and asks.</h3><p>Your assistant replies in seconds, in your shop's own name and tone.</p></div>
           <div class="vis" aria-hidden="true">
             <div class="photo-row">
               <span class="photo"><svg width="28" height="28" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18h24l2.5 22h-29L12 18z"/><path d="M18 18a6 6 0 0 1 12 0"/></svg></span>
@@ -412,60 +405,49 @@
 
         <li class="step">
           <span class="step-num mono" aria-hidden="true">02</span>
-          <div class="step-copy"><h3>It agrees the details.</h3><p>Price, delivery fee and size, settled in seconds, without you typing the same answer for the fiftieth time today.</p></div>
+          <div class="step-copy"><h3>Size, price and delivery address, sorted.</h3><p>Settled in seconds, without you typing the same answer for the fiftieth time today. The buyer just drops a pin, so there are no misspelled streets.</p></div>
           <div class="vis" aria-hidden="true">
             <div class="bubble bubble--buyer">Okay, I'll take medium</div>
             <div class="ui-card sum">
               <div><span>Cream Linen Shirt · M</span><span class="num">GH₵420.00</span></div>
-              <div><span>Delivery to Tema</span><span class="num">GH₵30.00</span></div>
-              <div class="total"><span>Total</span><span class="num">GH₵450.00</span></div>
+              <div class="total"><span>Total</span><span class="num">GH₵420.00</span></div>
+            </div>
+            <div class="ui-card note">
+              <span class="note-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+              <div><b>Tema, Greater Accra</b></div>
+              <span class="chip">Pin confirmed</span>
             </div>
           </div>
         </li>
 
         <li class="step">
           <span class="step-num mono" aria-hidden="true">03</span>
-          <div class="step-copy"><h3>It collects their location.</h3><p>The buyer taps to drop a pin, right in WhatsApp. No typing an address, no misspelled streets.</p></div>
+          <div class="step-copy"><h3>The buyer gets a secure payment link.</h3><p>Card or mobile money. No chasing.</p></div>
           <div class="vis" aria-hidden="true">
             <div class="ui-card">
-              <svg class="map" viewBox="0 0 400 150" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <path d="M-10 100 L150 78 L410 112" stroke="var(--road)" stroke-width="12" fill="none"/>
-                <path d="M110 -10 L170 160" stroke="var(--road)" stroke-width="8" fill="none"/>
-                <path d="M300 -10 L250 160" stroke="var(--road)" stroke-width="8" fill="none"/>
-                <g transform="translate(188 34)"><path d="M12 36s13-11 13-21a13 13 0 0 0-26 0c0 10 13 21 13 21z" fill="var(--accent)"/><circle cx="12" cy="15" r="5" fill="#FFFFFF"/></g>
-              </svg>
-              <div class="row"><span style="flex:1;font-size:14px;font-weight:500">Tema, Greater Accra</span><span class="chip">Pin confirmed</span></div>
-            </div>
-          </div>
-        </li>
-
-        <li class="step">
-          <span class="step-num mono" aria-hidden="true">04</span>
-          <div class="step-copy"><h3>It sends a Paystack payment link.</h3><p>Card or mobile money. No back-and-forth over how to pay.</p></div>
-          <div class="vis" aria-hidden="true">
-            <div class="ui-card">
-              <div class="pay-head">paystack.com</div>
+              <div class="pay-head">Payments by Paystack</div>
               <div class="pay-body">
-                <strong style="font-size:16px;font-weight:600">Pay GH₵450.00 to Aïsha Closet</strong>
+                <strong style="font-size:16px;font-weight:600">Pay GH₵420.00 to Aïsha Closet</strong>
                 <div style="display:flex;gap:8px"><span class="chip chip--line">Card</span><span class="chip chip--line">Mobile money</span></div>
-                <span class="pay-btn">Pay GH₵450.00</span>
+                <span class="pay-btn">Pay GH₵420.00</span>
+                <span style="font-size:12px;color:var(--faint)">Delivery is arranged by the seller.</span>
               </div>
             </div>
           </div>
         </li>
 
         <li class="step">
-          <span class="step-num mono" aria-hidden="true">05</span>
-          <div class="step-copy"><h3>You're notified once it's paid.</h3><p>Name, address and amount, everything you need to process the order.</p></div>
+          <span class="step-num mono" aria-hidden="true">04</span>
+          <div class="step-copy"><h3>You hear from it when there's money or a question.</h3><p>Name, address and amount, ready for you to book your courier. If it isn't sure, it asks you first.</p></div>
           <div class="vis" aria-hidden="true">
             <div class="ui-card note">
               <span class="note-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>
-              <div><b>New order paid</b><small>Ama K., Tema · GH₵450.00</small></div>
+              <div><b>New order paid</b><small>Ama K., Tema · GH₵420.00</small></div>
             </div>
             <div class="ui-card note">
-              <span class="qrow"></span>
-              <div class="qrow-text"><b>Cream Linen Shirt</b><small>Ama K. · Tema</small></div>
-              <span class="chip">To send</span>
+              <span class="note-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5h.01"/></svg></span>
+              <div><b>Question from a buyer</b><small>Do you deliver to Kumasi?</small></div>
+              <span class="chip">Needs you</span>
             </div>
           </div>
         </li>
@@ -478,12 +460,13 @@
   <section>
     <div class="wrap" style="padding-bottom:clamp(72px,10vw,112px)">
       <div class="trust">
-        <h2>Nothing new to trust.</h2>
+        <h2>Nothing new for your buyers to learn.</h2>
         <div class="trust-grid">
-          <div class="trust-item"><span class="tick" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><h3>Lives right where you already are</h3><p>WhatsApp and Instagram. No new app for your buyers to download.</p></div></div>
-          <div class="trust-item"><span class="tick" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><h3>It sounds like you</h3><p>Same shop name, same tone, same number. Buyers never know the difference.</p></div></div>
-          <div class="trust-item"><span class="tick" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><h3>Real payments, real rails</h3><p>Every order runs through Paystack, card or mobile money.</p></div></div>
-          <div class="trust-item"><span class="tick" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><h3>You're never locked out</h3><p>Step into any conversation yourself, any time, invisibly.</p></div></div>
+          <div class="trust-item"><span class="tick" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><h3>Lives on WhatsApp and Telegram</h3><p>Where your buyers already are. Keep sending them there from Instagram. No new app to download.</p></div></div>
+          <div class="trust-item"><span class="tick" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><h3>It sounds like you</h3><p>Same shop name, same tone. Buyers just get a quick, friendly answer.</p></div></div>
+          <div class="trust-item"><span class="tick" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><h3>Buyers pay securely</h3><p>By card or mobile money.</p></div></div>
+          <div class="trust-item"><span class="tick" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><h3>You're never locked out</h3><p>Step into any chat yourself, any time. You're always in control.</p></div></div>
+          <div class="trust-item"><span class="tick" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><h3>Its own number on WhatsApp</h3><p>The assistant needs a number just for it. Your orders get their own, so your personal WhatsApp stays yours.</p></div></div>
         </div>
       </div>
     </div>
@@ -493,10 +476,10 @@
   <section class="section" id="pricing">
     <div class="wrap pad">
       <p class="label">PRICING</p>
-      <h2 class="h2" style="margin-top:14px;max-width:760px">One flat fee for your order volume.</h2>
-      <p class="lead" style="margin-top:20px;max-width:600px">Pick the plan that matches how many orders you close a month. No commission cut, no surprise fees. Upgrade or downgrade any time.</p>
+      <h2 class="h2" style="margin-top:14px;max-width:760px">Pay for the orders you close. Not the messages you get.</h2>
+      <p class="lead" style="margin-top:20px;max-width:600px">Plans are based on orders, so a quiet week of enquiries costs you nothing extra. No commission, no per-message fees. Upgrade or downgrade any time.</p>
       <div class="tiers">
-        <div class="tier"><h3>Starter</h3><p class="price">GH₵250</p><p class="per">per month</p><p class="vol">Up to 40 orders a month</p><p class="tnote">About 10 orders a week. Smaller sellers, or trialling.</p></div>
+        <div class="tier"><h3>Starter</h3><p class="price">GH₵250</p><p class="per">per month</p><p class="vol">Up to 40 orders a month</p><p class="tnote">Good for getting started.</p></div>
         <div class="tier tier--lift"><h3>Growth</h3><p class="price">GH₵600</p><p class="per">per month</p><p class="vol">Up to 120 orders a month</p><p class="tnote">About 30 orders a week.</p></div>
         <div class="tier"><h3>Pro</h3><p class="price">GH₵1,200</p><p class="per">per month</p><p class="vol">Up to 300 orders a month</p><p class="tnote">About 70 orders a week. High-volume sellers.</p></div>
         <div class="tier"><h3>Scale</h3><p class="price">GH₵2,000</p><p class="per">per month</p><p class="vol">Up to 600 orders a month</p><p class="tnote">Multi-staff operations.</p></div>
@@ -508,7 +491,7 @@
   <section class="section">
     <div class="wrap pad final">
       <h2>Let your shop <em>answer itself.</em></h2>
-      <a class="btn btn--solid" style="height:56px;padding:0 30px" href="#" data-app-link="/signup">Sign up and get started</a>
+      <a class="btn btn--solid" style="height:56px;padding:0 30px" href="#" data-app-link="/signup">Start answering every DM</a>
     </div>
   </section>
 
@@ -551,10 +534,10 @@
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
   })();
 
-  // Hero: one event at a time rises through the ghost phone, and the verb under the headline follows it.
+  // Hero: one event at a time rises through the ghost phone, and the moment under the headline changes with it.
   (function () {
     var cards = Array.prototype.slice.call(document.querySelectorAll('#stage .evt'));
-    var verbs = Array.prototype.slice.call(document.querySelectorAll('#verbs .verb'));
+    var moments = Array.prototype.slice.call(document.querySelectorAll('#moments .moment'));
     var n = cards.length;
     if (!n) return;
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -573,7 +556,7 @@
         el.style.transform = 'translateY(' + s[0] + 'px) scale(' + s[1] + ')';
         el.style.opacity = s[2];
       });
-      verbs.forEach(function (el, i) { el.classList.toggle('on', i === cur); });
+      moments.forEach(function (el, i) { el.classList.toggle('on', i === k % moments.length); });
     }
     render();
     if (reduce) return;
