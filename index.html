@@ -298,7 +298,7 @@
   /* ---------- small screens ---------- */
   @media (max-width: 899px) {
     .hero-copy { order: -1; padding-bottom: 8px; }
-    .phone { height: 480px; }
+    .phone { height: 560px; }
   }
   @media (max-width: 720px) {
     .nav { gap: 16px; }
@@ -542,13 +542,18 @@
     if (!n) return;
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var k = n - 1; // start on the last event ("Order paid") so a still page reads as the result
+    var compact = window.matchMedia('(max-width: 899px)');
     function slot(off) {
-      if (off === 0) return [0, 1, 1];
-      if (off === n - 1) return [-112, 0.94, 0.6];
-      if (off === n - 2) return [-208, 0.88, 0.28];
-      if (off === 1) return [112, 0.96, 0];
-      return [220, 0.9, 0];
+      var f = compact.matches ? 0.82 : 1; // tighter stack on small screens so no card is clipped by the phone edge
+      var s;
+      if (off === 0) s = [0, 1, 1];
+      else if (off === n - 1) s = [-112, 0.94, 0.6];
+      else if (off === n - 2) s = [-208, 0.88, 0.28];
+      else if (off === 1) s = [112, 0.96, 0];
+      else s = [220, 0.9, 0];
+      return [s[0] * f, s[1], s[2]];
     }
+    if (compact.addEventListener) compact.addEventListener('change', function () { render(); });
     function render() {
       var cur = k % n;
       cards.forEach(function (el, i) {
